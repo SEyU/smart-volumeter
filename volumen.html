@@ -1,0 +1,117 @@
+<html>
+
+<head>
+  <title>Volumen</title>
+  <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+
+<div id="connstatus">
+</div>
+<div id="chart_div" style="height: 400px; width: 400px;">
+</div>
+</body>
+
+<script>
+google.charts.load('current', {'packages':['gauge']});
+google.charts.setOnLoadCallback(drawChart);
+
+
+var myMsg = 0; // where I put my message
+
+// gauge variables.
+
+
+
+
+
+// Google Charts Stuff
+     function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['My Value', 'Value'],
+          ['', 0],
+        ]);
+
+        var options = {
+          min: 0, max: 5000,
+          width: 400, height: 400,
+          redFrom: 4500, redTo: 5000,
+          yellowFrom: 4000, yellowTo: 4500,
+          minorTicks: 2,
+          majorTicks: ["0", "0,5K", "1K", "1,5K", "2K", "2,5K", "3K", "3,5K", "4K", "4,5K", "5K"]
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, myMsg );
+          chart.draw(data, options);
+        }, 400);
+      }
+
+
+ // Create a client instance
+  //client = new Paho.MQTT.Client("host", port,"client_id");
+
+
+  client = new Paho.MQTT.Client("m13.cloudmqtt.com", 35040, "web_" + parseInt(Math.random() * 100, 10));
+
+  // set callback handlers
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+  var options = {
+    useSSL: true,
+    userName: "egudeacq",
+    password: "OkFTZSCaav9U",
+    onSuccess:onConnect,
+    onFailure:doFail
+  }
+
+  // connect the client
+
+
+
+    client.connect(options);
+
+
+  // called when the client connects
+  function onConnect() {
+    // Once a connection has been made, make a subscription and send a message.
+    document.getElementById("connstatus").innerHTML = "Connected";
+    console.log("onConnect");
+    client.subscribe("egudeacq/feeds/myFirstValue");
+  }
+
+  function doFail(e){
+    console.log(e);
+  }
+
+  // called when the client loses its connection
+  function onConnectionLost(responseObject) {
+    document.getElementById("connstatus").innerHTML = "Not Connected";
+    if (responseObject.errorCode !== 0) {
+      console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+  }
+
+  // called when a message arrives
+  function onMessageArrived(message) {
+    myMsg = message.payloadString;
+
+  }
+
+  function updateChart(){
+    data.setValue(0, 1, 50);
+    chart.draw(data, options);
+  }
+
+</script>
+
+</html>
