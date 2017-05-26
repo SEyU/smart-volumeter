@@ -114,8 +114,6 @@ void loop() {
  altoObjeto=alto-distance2;
  largoObjeto=largo-distance3;
 
-  if()
-
    Serial.print("Ancho=");
   Serial.print(anchoObjeto);
   Serial.print(" ,Alto=");
