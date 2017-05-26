@@ -26,14 +26,14 @@ About external libraries, we used the following in our project:
 
 <h3>Arduino sketch</h3>
 
-<ESP8266WiFi.h>
-<Adafruit_MQTT.h>
-<Adafruit_MQTT_Client.h>
+ESP8266WiFi.h;
+Adafruit_MQTT.h;
+Adafruit_MQTT_Client.h
 
 <h3>HTML pages</h3>
 
-<Google Charts Javascript API>
-<Eclipse Paho MQTT Javascript>
+Google Charts Javascript API;
+Eclipse Paho MQTT Javascript
 
 <h2>Results</h2>
 
