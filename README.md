@@ -15,10 +15,10 @@ Once the server has the value of the volume, we get it using WebSocket to repres
 <h2>Assemble</h2>
 
 The Fritzing schema is the following:
-![fritzing](IMG/1.png)
+![fritzing](img/1.png)
 
 Our start assembling the components is the following:
-![start](IMG/3.jpg)
+![start](img/3.jpg)
 
 <h2>Libraries</h2>
 
@@ -26,23 +26,23 @@ About external libraries, we used the following in our project:
 
 <h3>Arduino sketch</h3>
 
-ESP8266WiFi.h
-Adafruit_MQTT.h
-Adafruit_MQTT_Client.h
+<ESP8266WiFi.h>
+<Adafruit_MQTT.h>
+<Adafruit_MQTT_Client.h>
 
 <h3>HTML pages</h3>
 
-Google Charts Javascript API
-Eclipse Paho MQTT Javascript
+<Google Charts Javascript API>
+<Eclipse Paho MQTT Javascript>
 
 <h2>Results</h2>
 
 An example of a volume value represented in the graph is the following:
-![graph](IMG/2.png)
+![graph](img/2.png)
 
 <h2>Volumetric</h2>
 
 The final state of our project is the following:
-![final1](IMG/4.png)
+![final1](img/4.png)
 
-![final2](IMG/5.png)
+![final2](img/5.png)
